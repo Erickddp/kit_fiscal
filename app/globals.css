@@ -1,0 +1,16 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Global styles for the KIT Fiscal Contable site. You can extend Tailwind here or
+ * add additional classes if necessary. For readability the body uses a light
+ * background and dark text. Links and buttons rely on the primary colour
+ * palette defined in tailwind.config.js.
+ */
+body {
+  @apply bg-background text-primary leading-relaxed antialiased;
+}
+
+a {
+  @apply text-accent hover:text-accent-hover transition-colors;
+}

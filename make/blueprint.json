@@ -1,0 +1,120 @@
+{
+  "scenarios": [
+    {
+      "name": "Support Request",
+      "description": "Automatización que maneja las solicitudes de soporte incluidas en el kit.",
+      "modules": [
+        {
+          "id": "webhook_support",
+          "type": "webhook:customWebhook",
+          "label": "Webhook de soporte",
+          "parameters": {
+            "name": "support_request"
+          }
+        },
+        {
+          "id": "sheet_add_row",
+          "type": "googleSheets:addRow",
+          "label": "Guardar en Google Sheets",
+          "parameters": {
+            "spreadsheetId": "<tuSpreadsheetID>",
+            "sheetName": "SupportRequests",
+            "values": [
+              "{{now}}",
+              "{{body.name}}",
+              "{{body.email}}",
+              "{{body.subject}}",
+              "{{body.category}}",
+              "{{body.description}}",
+              "{{body.orderId}}"
+            ]
+          }
+        },
+        {
+          "id": "gmail_send",
+          "type": "gmail:sendEmail",
+          "label": "Enviar confirmación",
+          "parameters": {
+            "to": "{{body.email}}",
+            "subject": "Solicitud de soporte recibida – KIT Fiscal Contable",
+            "body": "Hola {{body.name}},\n\nHemos recibido tu solicitud de soporte y la revisaremos a la brevedad. Recibirás respuesta en un máximo de 48 horas hábiles.\n\nGracias por confiar en nosotros."
+          }
+        },
+        {
+          "id": "create_task",
+          "type": "trello:createCard",
+          "label": "(Opcional) Crear tarea",
+          "parameters": {
+            "boardId": "<tuBoardId>",
+            "listId": "<tuListId>",
+            "name": "Soporte: {{body.subject}}",
+            "desc": "{{body.description}}\n\nNombre: {{body.name}}\nCorreo: {{body.email}}\nCategoría: {{body.category}}\nOrder ID: {{body.orderId}}"
+          }
+        }
+      ],
+      "connections": [
+        { "from": "webhook_support", "to": "sheet_add_row" },
+        { "from": "sheet_add_row", "to": "gmail_send" },
+        { "from": "gmail_send", "to": "create_task" }
+      ]
+    },
+    {
+      "name": "Upsell Request",
+      "description": "Automatización que gestiona las solicitudes de asesoría adicional.",
+      "modules": [
+        {
+          "id": "webhook_upsell",
+          "type": "webhook:customWebhook",
+          "label": "Webhook de asesoría",
+          "parameters": {
+            "name": "upsell_request"
+          }
+        },
+        {
+          "id": "sheet_add_row_upsell",
+          "type": "googleSheets:addRow",
+          "label": "Guardar en Google Sheets",
+          "parameters": {
+            "spreadsheetId": "<tuSpreadsheetID>",
+            "sheetName": "UpsellRequests",
+            "values": [
+              "{{now}}",
+              "{{body.name}}",
+              "{{body.email}}",
+              "{{body.subject}}",
+              "{{body.category}}",
+              "{{body.description}}",
+              "{{body.orderId}}"
+            ]
+          }
+        },
+        {
+          "id": "gmail_send_upsell",
+          "type": "gmail:sendEmail",
+          "label": "Enviar confirmación asesoría",
+          "parameters": {
+            "to": "{{body.email}}",
+            "subject": "Solicitud de asesoría recibida – KIT Fiscal Contable",
+            "body": "Hola {{body.name}},\n\nHemos recibido tu solicitud de asesoría. En breve evaluaremos tu caso y nos pondremos en contacto para coordinar los detalles y costos.\n\nGracias por tu interés."
+          }
+        },
+        {
+          "id": "create_task_upsell",
+          "type": "trello:createCard",
+          "label": "(Opcional) Crear tarea",
+          "parameters": {
+            "boardId": "<tuBoardId>",
+            "listId": "<tuListId>",
+            "name": "Asesoría: {{body.subject}}",
+            "desc": "{{body.description}}\n\nNombre: {{body.name}}\nCorreo: {{body.email}}\nCategoría: {{body.category}}\nOrder ID: {{body.orderId}}"
+          }
+        }
+      ],
+      "connections": [
+        { "from": "webhook_upsell", "to": "sheet_add_row_upsell" },
+        { "from": "sheet_add_row_upsell", "to": "gmail_send_upsell" },
+        { "from": "gmail_send_upsell", "to": "create_task_upsell" }
+      ]
+    }
+  ]
+}

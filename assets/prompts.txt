@@ -1,0 +1,5 @@
+Image prompts used to generate the abstract illustrations included in this project. These prompts were passed to an AI image generator and the resulting PNG files reside in the `/public` folder.
+
+1. hero.png: "A modern and abstract illustration representing accounting and finance tools. It features stylized folders, documents, and charts, with a neutral color palette of blue and green. The design is sleek and premium, with soft gradients and no text."
+2. library.png: "Abstract illustration of a digital library with books and a tablet, folders and clouds representing online resources. Warm tones of beige, green and blue. Sleek, modern design, no text."
+3. contracts.png: "Abstract illustration of contracts and law with documents, handshake, and scales of justice, using cool blue and gray tones, modern design, no text."
