@@ -14,29 +14,38 @@ interface FooterProps {
  */
 export default function Footer({ checkoutUrl }: FooterProps) {
   return (
-    <footer className="bg-primary-dark text-white pt-16 pb-12 mt-4 rounded-t-3xl shadow-[0_-8px_30px_rgba(0,0,0,0.12)]">
-      <div className="container mx-auto px-6 text-center space-y-8 flex flex-col items-center">
-        <div>
-          <h3 className="text-2xl font-bold tracking-tight mb-2">¿Listo para empezar?</h3>
-          <p className="text-primary-light text-sm max-w-sm mx-auto">Consigue acceso inmediato al kit y obtén soporte profesional.</p>
+    <footer className="bg-black/80 backdrop-blur-md text-white pt-24 pb-16 mt-16 border-t border-white/10">
+      <div className="container mx-auto px-6 text-center space-y-12 flex flex-col items-center">
+        <div className="max-w-md">
+          <h3 className="text-3xl font-bold tracking-tight mb-4 text-glow">¿Listo para integrar el Ecosistema?</h3>
+          <p className="text-primary-muted text-base leading-relaxed">Implementa infraestructura de última generación y potencia tu práctica profesional con protocolos de élite.</p>
         </div>
         <a
           href={checkoutUrl || '#'}
-          className="w-full sm:w-auto max-w-xs mx-auto text-center inline-block bg-white text-primary font-bold text-lg px-8 py-4 rounded-xl shadow-soft hover:shadow-float hover:bg-gray-50 active:scale-[0.98] transition-all duration-300"
+          className="w-full sm:w-auto px-12 py-5 text-center inline-block bg-white text-black font-black text-xl rounded-2xl shadow-premium hover:shadow-glow hover:scale-[1.05] active:scale-[0.98] transition-all duration-300"
         >
-          Comprar ahora
+          Poner en Marcha
         </a>
 
-        <div className="border-t border-primary-light/30 w-full pt-8 mt-8 flex flex-col items-center gap-4">
-          <p className="text-xs font-semibold text-primary-light uppercase tracking-wider">
-            Soporte brindado por Contador Público
+        <div className="border-t border-white/5 w-full pt-12 mt-12 flex flex-col items-center gap-6">
+          <div className="flex flex-col items-center gap-2">
+            <span className="text-[10px] font-bold text-accent uppercase tracking-[0.2em]">Validated by</span>
+            <p className="text-sm font-bold text-white/80 uppercase tracking-widest px-4 py-2 bg-white/5 border border-white/10 rounded-lg">
+              Contador Público Colegiado
+            </p>
+          </div>
+          <p className="text-[11px] text-primary-muted max-w-lg mx-auto leading-relaxed opacity-60">
+            Material informativo de uso profesional. No sustituye asesoría formal; los resultados dependen de la correcta aplicación técnica. No se ofrece representación jurídica ni garantías sobre criterios de autoridad.
           </p>
-          <p className="text-[11px] text-gray-500 max-w-md mx-auto leading-relaxed">
-            Material informativo. No sustituye asesoría formal; los resultados dependen de cada caso. No se ofrece representación ante autoridades ni se garantizan resultados específicos.
-          </p>
-          <p className="text-[11px] text-gray-500 font-medium mt-2">
-            &copy; {new Date().getFullYear()} KIT Fiscal Contable. Todos los derechos reservados.
-          </p>
+          <div className="flex flex-col items-center gap-4">
+            <p className="text-[11px] text-primary-muted/40 font-bold tracking-widest uppercase">
+              &copy; {new Date().getFullYear()} erickddp.com — Platform
+            </p>
+            <div className="flex gap-6 opacity-40">
+              <Link href="/privacy" className="text-[10px] uppercase font-bold tracking-widest hover:text-white transition-colors">Privacidad</Link>
+              <Link href="/terms" className="text-[10px] uppercase font-bold tracking-widest hover:text-white transition-colors">Términos</Link>
+            </div>
+          </div>
         </div>
       </div>
     </footer>

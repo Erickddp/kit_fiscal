@@ -1,12 +1,12 @@
 import './globals.css';
-import { Inter } from 'next/font/google';
+import { GeistSans } from 'geist/font/sans';
+import { GeistMono } from 'geist/font/mono';
 import type { Metadata } from 'next';
-
-const inter = Inter({ subsets: ['latin'], variable: '--font-inter' });
+import TransitionProvider from '@/components/TransitionProvider';
 
 export const metadata: Metadata = {
-  title: 'KIT Fiscal Contable',
-  description: 'Kit fiscal contable con calculadoras, formatos, contratos y biblioteca digital (México)',
+  title: 'KIT Fiscal Contable | Premium Platform',
+  description: 'Evolución de servicios automatizados para el sector contable y fiscal (México)',
 };
 
 export default function RootLayout({
@@ -15,9 +15,14 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="es">
-      <body className={`${inter.variable} font-sans antialiased bg-background text-primary`}>
-        {children}
+    <html lang="es" className={`${GeistSans.variable} ${GeistMono.variable} dark`}>
+      <head>
+        <link rel="icon" href="/favicon.ico" sizes="any" />
+      </head>
+      <body className="font-sans antialiased text-primary selection:bg-accent/30 bg-background overflow-x-hidden">
+        <TransitionProvider>
+          {children}
+        </TransitionProvider>
       </body>
     </html>
   );

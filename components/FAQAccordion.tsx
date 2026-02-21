@@ -57,32 +57,33 @@ export default function FAQAccordion() {
   };
 
   return (
-    <section id="faq" className="py-16 bg-background relative z-0">
-      <div className="container mx-auto px-5">
-        <h2 className="text-3xl font-bold text-center mb-10 text-primary tracking-tight">Preguntas frecuentes</h2>
-        <div className="max-w-2xl mx-auto space-y-4">
+    <section id="faq" className="py-24 bg-background relative z-0">
+      <div className="container mx-auto px-6">
+        <h2 className="text-4xl font-bold text-center mb-12 text-white tracking-tight text-glow">
+          Protocolo de <span className="text-accent">Consultas (FAQ)</span>
+        </h2>
+        <div className="max-w-3xl mx-auto space-y-4">
           {faqs.map((faq, index) => (
-            <div key={index} className="bg-surface border border-gray-100 rounded-2xl shadow-sm overflow-hidden transition-all duration-300">
+            <div key={index} className={`glass-card transition-all duration-300 ${openIndex === index ? 'bg-surface/80 border-accent/20 shadow-glow' : 'hover:bg-white/5'}`}>
               <button
                 type="button"
-                className="flex justify-between items-center w-full min-h-[60px] text-left font-semibold text-primary p-5 focus:outline-none focus:bg-gray-50 active:bg-gray-50 cursor-pointer select-none"
+                className="flex justify-between items-center w-full min-h-[70px] text-left font-bold text-white/90 p-6 focus:outline-none cursor-pointer select-none"
                 onClick={() => toggle(index)}
                 aria-expanded={openIndex === index}
               >
-                <span className="pr-4 leading-snug text-[15px]">{faq.question}</span>
-                <span className={`flex-shrink-0 w-8 h-8 flex items-center justify-center rounded-full bg-gray-50 text-accent transition-transform duration-300 ${openIndex === index ? 'rotate-180 bg-accent/10 border-transparent shadow-inner' : ' border border-gray-200'}`}>
+                <span className="pr-4 leading-snug text-[16px]">{faq.question}</span>
+                <span className={`flex-shrink-0 w-8 h-8 flex items-center justify-center rounded-full transition-all duration-300 ${openIndex === index ? 'rotate-180 bg-accent text-white' : 'bg-white/5 text-accent border border-white/10'}`}>
                   <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M19 9l-7 7-7-7"></path>
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="3" d="M19 9l-7 7-7-7"></path>
                   </svg>
                 </span>
               </button>
               {openIndex === index && (
                 <div
-                  className="px-5 pb-5"
-                  style={{ animation: 'fadeIn 0.3s ease-out forwards' }}
+                  className="px-6 pb-6 animate-in fade-in slide-in-from-top-2 duration-300"
                 >
-                  <p className="text-muted text-[14px] leading-relaxed relative pt-4 border-t border-gray-50">
-                    {faq.answer}
+                  <p className="text-primary-muted text-[15px] leading-relaxed relative pt-5 border-t border-white/10">
+                    {faq.answer.replace(/kit/g, 'ecosistema').replace(/soporte/g, 'asistencia técnica')}
                   </p>
                 </div>
               )}
@@ -90,13 +91,6 @@ export default function FAQAccordion() {
           ))}
         </div>
       </div>
-      <style dangerouslySetInnerHTML={{
-        __html: `
-        @keyframes fadeIn {
-          from { opacity: 0; transform: translateY(-4px); }
-          to { opacity: 1; transform: translateY(0); }
-        }
-      `}} />
     </section>
   );
 }

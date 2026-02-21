@@ -15,39 +15,51 @@ export default function Hero({
   imageSrc: string;
 }) {
   return (
-    <section className="relative overflow-hidden py-12 sm:py-20 bg-background pt-20">
-      <div className="container mx-auto px-5 flex flex-col md:flex-row items-center justify-between gap-10">
-        <div className="w-full md:w-1/2 flex flex-col items-center text-center md:items-start md:text-left z-10" data-testid="hero-text">
-          <div className="inline-flex items-center px-3 py-1 rounded-full bg-accent/10 border border-accent/20 text-accent text-xs font-semibold tracking-wide uppercase mb-6">
-            Lanzamiento 2026
+    <section id="hero" className="relative overflow-hidden py-24 lg:py-32 bg-background pt-32">
+      {/* Premium Background Glow */}
+      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-[600px] bg-accent/5 blur-[120px] rounded-full -z-10" />
+
+      <div className="container mx-auto px-6 flex flex-col lg:flex-row items-center justify-between gap-16">
+        <div className="w-full lg:w-3/5 flex flex-col items-center text-center lg:items-start lg:text-left z-10">
+          <div className="inline-flex items-center px-4 py-1.5 rounded-full bg-accent/5 border border-white/10 text-accent text-[10px] font-bold tracking-[0.3em] uppercase mb-10 backdrop-blur-md">
+            Protocolo Fiscal 2026
           </div>
-          <h1 className="text-4xl sm:text-5xl md:text-6xl font-extrabold text-primary mb-5 tracking-tight leading-[1.1]">
-            KIT Fiscal <br /> Contable
+          <h1 className="text-5xl sm:text-6xl lg:text-8xl font-black text-white mb-8 tracking-[-0.04em] leading-[0.95] text-glow">
+            Infraestructura <br /> <span className="text-accent">Legal y Fiscal</span>
           </h1>
-          <p className="text-lg sm:text-xl font-medium text-muted mb-8 max-w-sm mx-auto md:mx-0 leading-relaxed">
-            Calculadoras, formatos, contratos y biblioteca digital en un solo lugar.
+          <p className="text-xl sm:text-2xl font-medium text-primary-muted mb-12 max-w-2xl mx-auto lg:mx-0 leading-relaxed tracking-[-0.01em]">
+            Sistema de alto rendimiento para la gestión contable avanzada. <br className="hidden md:block" />
+            <span className="text-white/80">Protocolos y activos digitales de grado consultoría.</span>
           </p>
-          <div className="flex flex-col w-full sm:w-auto items-center md:items-start gap-4 mb-4">
+          <div className="flex flex-col sm:flex-row w-full sm:w-auto items-center gap-6">
             <a
               href={checkoutUrl || '#'}
-              className="w-full sm:w-auto text-center bg-primary text-white font-semibold text-lg px-8 py-4 rounded-xl shadow-soft hover:shadow-float hover:bg-primary-light active:scale-[0.98] transition-all duration-300"
+              className="w-full sm:w-auto text-center bg-white text-black font-black text-lg px-12 py-5 rounded-xl shadow-premium hover:shadow-glow hover:scale-[1.05] active:scale-[0.95] transition-all duration-300 uppercase tracking-widest"
             >
-              Comprar ahora — $99 MXN
+              Adquirir KIT — $99
             </a>
-            <p className="text-xs font-medium text-muted text-center w-full">Pago único. Acceso inmediato.</p>
+            <div className="flex flex-col items-center sm:items-start">
+              <span className="text-[10px] font-bold text-accent uppercase tracking-[0.2em] mb-1">Status</span>
+              <span className="text-xs font-bold text-white uppercase tracking-widest flex items-center gap-2">
+                <span className="w-2 h-2 bg-green-500 rounded-full animate-pulse" />
+                Sincronizado c/ SAT 2026
+              </span>
+            </div>
           </div>
         </div>
-        <div className="w-full md:w-1/2 flex justify-center mt-2 relative" data-testid="hero-image">
-          <div className="absolute inset-0 bg-gradient-to-tr from-accent/20 to-transparent blur-3xl opacity-50 -z-10 rounded-full" />
-          <Image
-            src={imageSrc}
-            alt="Ilustración abstracta de contabilidad"
-            width={600}
-            height={400}
-            className="rounded-2xl shadow-float transition-transform duration-700 hover:scale-[1.02]"
-            sizes="(min-width: 768px) 50vw, 100vw"
-            priority
-          />
+        <div className="w-full lg:w-2/5 flex justify-center mt-8 lg:mt-0 relative">
+          <div className="absolute inset-0 bg-accent/20 blur-[100px] opacity-30 -z-10 rounded-full" />
+          <div className="relative p-1.5 glass-card">
+            <Image
+              src={imageSrc}
+              alt="Ecosistema EDDP"
+              width={600}
+              height={400}
+              className="rounded-xl shadow-2xl grayscale hover:grayscale-0 transition-all duration-700 hover:scale-[1.01]"
+              sizes="(min-width: 1024px) 40vw, 90vw"
+              priority
+            />
+          </div>
         </div>
       </div>
     </section>
